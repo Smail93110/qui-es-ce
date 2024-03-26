@@ -3,3 +3,17 @@ h1{
 text-align: center;
 
 }
+
+.container{
+
+max-width: 1000px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+}
+
+input{
+
+font-size: 20px;
+}

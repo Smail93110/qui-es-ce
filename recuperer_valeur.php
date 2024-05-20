@@ -1,163 +1,74 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$regles = [
-    "Personnage 1 (0000000)" => [
-        "lunettes" => "0000000",
-        "moustache" => "0000000",
-        "chapeau" => "0000000",
-        "cheveux" => "0000000",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 2 (0001111)" => [
-        "lunettes" => "0000000",
-        "moustache" => "0001111",
-        "chapeau" => "0000000",
-        "cheveux" => "0000000",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 3 (0010011)" => [
-        "lunettes" => "0000000",
-        "moustache" => "0000000",
-        "chapeau" => "0010011",
-        "cheveux" => "0000000",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 4 (0011100)" => [
-        "lunettes" => "0000000",
-        "moustache" => "0000000",
-        "chapeau" => "0000000",
-        "cheveux" => "0011100",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 5 (0101010)" => [
-        "lunettes" => "0000000",
-        "moustache" => "0000000",
-        "chapeau" => "0000000",
-        "cheveux" => "0101010",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 6 (0110110)" => [
-        "lunettes" => "0000000",
-        "moustache" => "0000000",
-        "chapeau" => "0000000",
-        "cheveux" => "0110110",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 7 (1001001)" => [
-        "lunettes" => "0000000",
-        "moustache" => "0000000",
-        "chapeau" => "0000000",
-        "cheveux" => "1001001",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 8 (0100101)" => [
-        "lunettes" => "0000000",
-        "moustache" => "0000000",
-        "chapeau" => "0000000",
-        "cheveux" => "0100101",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 9 (1000110)" => [
-        "lunettes" => "0000000",
-        "moustache" => "0000000",
-        "chapeau" => "0000000",
-        "cheveux" => "1000110",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 10 (1010101)" => [
-        "lunettes" => "1010101",
-        "moustache" => "0000000",
-        "chapeau" => "0000000",
-        "cheveux" => "0000000",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 11 (1011010)" => [
-        "lunettes" => "0000000",
-        "moustache" => "1011010",
-        "chapeau" => "0000000",
-        "cheveux" => "0000000",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 12 (1100011)" => [
-        "lunettes" => "1100011",
-        "moustache" => "0000000",
-        "chapeau" => "0000000",
-        "cheveux" => "0000000",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 13 (1101100)" => [
-        "lunettes" => "0000000",
-        "moustache" => "0000000",
-        "chapeau" => "0000000",
-        "cheveux" => "0000000",
-        "boucle" => "1101100",
-        "barbe" => "0000000"
-    ],
-    "Personnage 14 (1110000)" => [
-        "lunettes" => "1110000",
-        "moustache" => "1110000",
-        "chapeau" => "0000000",
-        "cheveux" => "0000000",
-        "boucle" => "0000000",
-        "barbe" => "0000000"
-    ],
-    "Personnage 15 (1111111)" => [
-        "lunettes" => "1111111",
-        "moustache" => "1111111",
-        "chapeau" => "1111111",
-        "cheveux" => "1111111",
-        "boucle" => "1111111",
-        "barbe" => "1111111"
-    ],
-    "Personnage 16 (0111001)" => [
-     => "0000000",
-        "cheveux" => "0000000",
-        "boucle" => "0000000",
-        "barbe" => "0111001"
-    ];
 
+// Fonction pour afficher les images des personnages
+function afficherPersonnages() {
+  $personnages = [
+    // Tableau associatif contenant les images et les caractéristiques des personnages
+    1 => ["image" => "./img/personnage/0000000.jpg", "caractéristiques" => ["lunettes" => false, "moustache" => false, "chapeau" => true, ...]],
+    // ... (ajouter plus de personnages)
+  ];
 
+  foreach ($personnages as $id => $personnage) {
+    echo "<img src='{$personnage['image']}' alt='Personnage {$id}'>";
+  }
+}
 
+// Fonction pour traiter les réponses du joueur
+function verifierMensonge($reponse, $caractéristique, $personnageMystere) {
+  $reponse = strtolower($reponse); // Convertir la réponse en minuscules
+  $caractéristique = strtolower($caractéristique); // Convertir la caractéristique en minuscules
 
-  // Récupérer les réponses de l'utilisateur
-    $lunettes = isset($_POST['lunettes']) ? $_POST['lunettes'] : '';
-    $moustache = isset($_POST['moustache']) ? $_POST['moustache'] : '';
-    $chapeau = isset($_POST['chapeau']) ? $_POST['chapeau'] : '';
-    $cheveux = isset($_POST['cheveux']) ? $_POST['cheveux'] : '';
-    $boucle = isset($_POST['boucle']) ? $_POST['boucle'] : '';
-    $barbe = isset($_POST['barbe']) ? $_POST['barbe'] : '';
+  $mensonge = false; // Variable pour stocker si un mensonge est détecté
 
-    // Concaténer les réponses de l'utilisateur pour former une réponse binaire
-    $reponseUtilisateur = $lunettes[0] . $moustache[0] . $chapeau[0] . $cheveux[0] . $boucle[0] . $barbe[0];
-
-    // Parcourir les règles pour chaque personnage
-    foreach ($regles as $personnage => $caracteristiques) {
-        // Vérifier si les réponses de l'utilisateur correspondent aux règles pour ce personnage
-        if ($reponseUtilisateur === implode('', $caracteristiques)) {
-            echo "Le personnage est : $personnage";
-            // Sortir de la boucle dès qu'une correspondance est trouvée
-            break;
-        }
+  if ($reponse === "oui") {
+    if (!$personnageMystere[$caractéristique]) {
+      $mensonge = true; // Le joueur a dit "oui" alors que la caractéristique est fausse
     }
-
-    // Si aucune correspondance trouvée, cela signifie que l'utilisateur ment
-    if (!isset($personnage)) {
-        echo "Vous mentez ! Aucun personnage ne correspond à vos réponses.";
+  } else if ($reponse === "non") {
+    if ($personnageMystere[$caractéristique]) {
+      $mensonge = true; // Le joueur a dit "non" alors que la caractéristique est vraie
     }
+  }
+
+  return $mensonge;
 }
 
 
-  
+//recuperer les données
+$lunettes = isset($_POST['lunettes']) ? $_POST['lunettes'] : '';
+$moustache = isset($_POST['moustache']) ? $_POST['moustache'] : '';
+$chapeau = isset($_POST['chapeau']) ? $_POST['chapeau'] : '';
+$cheveux = isset($_POST['cheveux']) ? $_POST['cheveux'] : '';
+$boucle = isset($_POST['boucle']) ? $_POST['boucle'] : '';
+$barbe = isset($_POST['barbe']) ? $_POST['barbe'] : '';
+
+// Début du code principal
+$personnages = [
+  // ... (remplir le tableau des personnages avec leurs images et caractéristiques)
+];
+
+// Sélectionner un personnage mystère aléatoire
+$personnageMystereId = rand(1, count($personnages));
+$personnageMystere = $personnages[$personnageMystereId];
+
+// Afficher les images des personnages
+afficherPersonnages();
+
+// Formulaire pour poser des questions
+if (isset($_POST['question']) && isset($_POST['reponse'])) {
+  $question = $_POST['question'];
+  $reponse = $_POST['reponse'];
+  $caractéristique = $_POST['caractéristique'];
+
+  // Vérifier si le joueur ment
+  $mensonge = verifierMensonge($reponse, $caractéristique, $personnageMystere);
+
+  // Afficher le résultat de la question
+  echo "<p>Résultat: {$question} ? {$reponse}</p>";
+
+  if ($mensonge) {
+    echo "<p>Indice de mensonge !</p>";
+  }
+}
+
 ?>
